@@ -60,7 +60,108 @@ Stream BIGINT,
 EnergyLiveness FLOAT,  
 most_playedon VARCHAR(50)  
 );  
+
+### View All Data
+SELECT * FROM spotify;  
+
+
+### Count Total Number of Records
+SELECT COUNT(*) FROM spotify;  -- 20594  
+
+### Count Total Number of Unique Artists
+SELECT COUNT(DISTINCT Artist) FROM spotify;  -- 2074  
+
+### List All Album Types
+SELECT DISTINCT Album_type FROM spotify;  -- "album","compilation","single"  
+
+### Maximum Track Duration (in minutes)
+SELECT MAX(Duration_min) FROM spotify;  -- 77.9343  
+
+### Minimum Track Duration (in minutes)
+SELECT MIN(Duration_min) FROM spotify;  -- 0  
+
+### Platforms Where Track is Most Played
+SELECT DISTINCT most_playedon FROM spotify;  -- "Youtube","Spotify"  
+
+### Retrieve Tracks With Zero Duration
+SELECT * FROM spotify 
+WHERE Duration_min = 0;  
+
+### Remove Records With Zero Duration (Data Cleaning)
+DELETE FROM spotify 
+WHERE Duration_min = 0;
+
 ## Business Problems and Solutions
+### Q1. Retrieve the names of all tracks that have more than 1 billion streams.  
+SELECT   
+  Track,  
+  stream   
+FROM spotify   
+WHERE stream > 1000000000;  
+
+### Q2. List all the albums along with their respective artists.  
+SELECT   
+  DISTINCT album,  
+  artist   
+FROM spotify;  -- Total rows: 14178  
+
+### Q3. DISTINCT album removes duplicates only based on album name  
+SELECT   
+  DISTINCT album  
+FROM spotify;  -- Total rows: 11853  
+-- DISTINCT album, artist treats the combination as a pair  
+
+### Q4. Get the total number of comments for tracks where licensed = TRUE.  
+SELECT   
+  SUM(comments) AS Total_Comments  
+FROM spotify   
+WHERE licensed = TRUE ;  
+
+### Q5. Find all tracks that belong to the album type single.  
+SELECT * FROM spotify   
+WHERE album_type = 'single';  
+
+### Q6. Count the total number of tracks by each artist.  
+SELECT   
+artist,  
+COUNT(track) AS total_no_songs  
+FROM spotify   
+GROUP BY artist  
+ORDER BY total_no_songs DESC;   
+
+### Q7. Calculate the average danceability of tracks in each album.  
+SELECT   
+album,  
+AVG(danceability) AS avg_danceability  
+FROM spotify  
+GROUP BY 1  
+ORDER BY 2 DESC;  
+
+### Q8. Find the top 5 tracks with the highest energy values.  
+SELECT track,   
+MAX(Energy) AS Highest_energy   
+FROM spotify  
+ORDER BY Highest_energy DESC  
+LIMIT 5;  
+
+### Q9. List all tracks along with their views and likes where official_video = TRUE   
+SELECT   
+track,   
+views,  
+likes  
+FROM spotify  
+WHERE official_video = TRUE  
+GROUP BY 1  
+ORDER BY 2 DESC;  
+
+### Q10. For each album, calculate the total views of all associated tracks.  
+SELECT  
+album,   
+track,  
+SUM(views) AS Total_views  
+FROM spotify  
+GROUP BY album,track  
+ORDER BY Total_views DESC;  
 
 ## Technology Stack
 
