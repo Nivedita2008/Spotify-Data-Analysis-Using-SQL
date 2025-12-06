@@ -32,6 +32,36 @@ The dataset contains detailed attributes of music tracks, including:
 - Query optimization using indexes and execution plans
 - Meaningful music metrics queries (top artists, popular albums, etc.)
 
+## Schema
+DROP TABLE IF EXISTS spotify;
+CREATE TABLE spotify(  
+Artist VARCHAR(255),  
+Track VARCHAR(255),  
+Album VARCHAR(255),    
+Album_type VARCHAR(50),  
+Danceability FLOAT,  
+Energy FLOAT,  
+Loudness FLOAT,    
+Speechiness FLOAT,    
+Acousticness FLOAT,    
+Instrumentalness FLOAT,  
+Liveness FLOAT,  
+Valence FLOAT,  
+Tempo FLOAT,  
+Duration_min FLOAT,  
+Title VARCHAR(255),  
+Channel VARCHAR(255),  
+Views FLOAT,  
+Likes FLOAT,    
+Comments BIGINT,  
+Licensed BOOLEAN,  
+official_video BOOLEAN,  
+Stream BIGINT,  
+EnergyLiveness FLOAT,  
+most_playedon VARCHAR(50)  
+);  
+## Business Problems and Solutions
+
 ## Technology Stack
 
 - PostgreSQL for Database engine
