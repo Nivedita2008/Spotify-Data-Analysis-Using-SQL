@@ -70,40 +70,52 @@ SELECT COUNT(*) FROM spotify;
 -- 20594  
 
 #### Count Total Number of Unique Artists
-SELECT COUNT(DISTINCT Artist) FROM spotify;  
+SELECT 
+  COUNT(DISTINCT Artist)  
+FROM spotify;  
 -- 2074 unique artists  
 
 #### List All Album Types
-SELECT DISTINCT Album_type FROM spotify;  
+SELECT 
+DISTINCT Album_type   
+FROM spotify;   
 -- "album","compilation","single"  
 
 #### Maximum Track Duration (in minutes)
-SELECT MAX(Duration_min) FROM spotify;  
+SELECT 
+  MAX(Duration_min)  
+FROM spotify;   
 -- 77.9343 minutes (longest track)
 
 #### Minimum Track Duration (in minutes)
-SELECT MIN(Duration_min) FROM spotify;  
+SELECT 
+MIN(Duration_min)   
+FROM spotify;  
 -- 0 minutes (invalid/missing duration)  
 
 #### Platforms Where Track is Most Played
-SELECT DISTINCT most_playedon FROM spotify;  
+SELECT 
+  DISTINCT most_playedon  
+FROM spotify;  
 -- "Youtube","Spotify"  
 
 #### Retrieve Tracks With Zero Duration
-SELECT * FROM spotify 
-WHERE Duration_min = 0; 
+SELECT * 
+FROM spotify  
+WHERE Duration_min = 0;  
 -- Shows tracks having incorrect duration (0 min)
 
 #### Remove Records With Zero Duration (Data Cleaning)
-DELETE FROM spotify 
-WHERE Duration_min = 0;
+DELETE  
+FROM spotify  
+WHERE Duration_min = 0;  
 -- Removes invalid/incorrect entries from the dataset
 
 ## Business Problems and Solutions
 ### Q1. Retrieve the names of all tracks that have more than 1 billion streams.  
 SELECT   
-  Track,  
-  stream   
+  Track,   
+  stream    
 FROM spotify   
 WHERE stream > 1000000000;  
 
@@ -116,8 +128,8 @@ FROM spotify;  -- Total rows: 14178
 ### Q3. DISTINCT album removes duplicates only based on album name  
 SELECT   
   DISTINCT album  
-FROM spotify;  -- Total rows: 11853  
--- DISTINCT album, artist treats the combination as a pair  
+FROM spotify;   
+-- DISTINCT album, artist treats the combination as a pair , Total rows: 11853 
 
 ### Q4. Get the total number of comments for tracks where licensed = TRUE.  
 SELECT   
@@ -170,6 +182,8 @@ SUM(views) AS Total_views
 FROM spotify  
 GROUP BY album,track  
 ORDER BY Total_views DESC;  
+
+
 
 ## Technology Stack
 
