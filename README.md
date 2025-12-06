@@ -77,7 +77,7 @@ FROM spotify;
 
 #### List All Album Types
 SELECT 
-DISTINCT Album_type   
+  DISTINCT Album_type   
 FROM spotify;   
 -- "album","compilation","single"  
 
@@ -89,7 +89,7 @@ FROM spotify;
 
 #### Minimum Track Duration (in minutes)
 SELECT 
-MIN(Duration_min)   
+  MIN(Duration_min)   
 FROM spotify;  
 -- 0 minutes (invalid/missing duration)  
 
@@ -102,13 +102,15 @@ FROM spotify;
 #### Retrieve Tracks With Zero Duration
 SELECT * 
 FROM spotify  
-WHERE Duration_min = 0;  
+WHERE 
+  Duration_min = 0;  
 -- Shows tracks having incorrect duration (0 min)
 
 #### Remove Records With Zero Duration (Data Cleaning)
 DELETE  
 FROM spotify  
-WHERE Duration_min = 0;  
+WHERE 
+  Duration_min = 0;  
 -- Removes invalid/incorrect entries from the dataset
 
 ## Business Problems and Solutions
@@ -129,56 +131,59 @@ FROM spotify;  -- Total rows: 14178
 SELECT   
   DISTINCT album  
 FROM spotify;   
--- DISTINCT album, artist treats the combination as a pair , Total rows: 11853 
 
 ### Q4. Get the total number of comments for tracks where licensed = TRUE.  
 SELECT   
   SUM(comments) AS Total_Comments  
 FROM spotify   
-WHERE licensed = TRUE ;  
+WHERE 
+  licensed = TRUE ;  
 
 ### Q5. Find all tracks that belong to the album type single.  
-SELECT * FROM spotify   
-WHERE album_type = 'single';  
+SELECT *
+FROM spotify   
+WHERE 
+  album_type = 'single';  
 
 ### Q6. Count the total number of tracks by each artist.  
 SELECT   
-artist,  
-COUNT(track) AS total_no_songs  
+  artist,  
+  COUNT(track) AS total_no_songs  
 FROM spotify   
 GROUP BY artist  
 ORDER BY total_no_songs DESC;   
 
 ### Q7. Calculate the average danceability of tracks in each album.  
 SELECT   
-album,  
-AVG(danceability) AS avg_danceability  
+  album,  
+  AVG(danceability) AS avg_danceability  
 FROM spotify  
 GROUP BY 1  
 ORDER BY 2 DESC;  
 
 ### Q8. Find the top 5 tracks with the highest energy values.  
 SELECT track,   
-MAX(Energy) AS Highest_energy   
+  MAX(Energy) AS Highest_energy   
 FROM spotify  
 ORDER BY Highest_energy DESC  
 LIMIT 5;  
 
 ### Q9. List all tracks along with their views and likes where official_video = TRUE   
 SELECT   
-track,   
-views,  
-likes  
+  track,   
+  views,  
+  likes  
 FROM spotify  
-WHERE official_video = TRUE  
+WHERE 
+  official_video = TRUE  
 GROUP BY 1  
 ORDER BY 2 DESC;  
 
 ### Q10. For each album, calculate the total views of all associated tracks.  
 SELECT  
-album,   
-track,  
-SUM(views) AS Total_views  
+  album,   
+  track,  
+  SUM(views) AS Total_views  
 FROM spotify  
 GROUP BY album,track  
 ORDER BY Total_views DESC;  
@@ -186,9 +191,9 @@ ORDER BY Total_views DESC;
 ## Q11. Retrieve the track names that have been streamed on Spotify more than YouTube.
 SELECT * FROM  
 (SELECT  
-track,  
-COALESCE(SUM(CASE WHEN most_playedon = 'Youtube' THEN stream END),0) AS streamed_on_youtube,  
-COALESCE(SUM(CASE WHEN most_playedon = 'Spotify' THEN stream END),0) AS streamed_on_spotify  
+  track,  
+  COALESCE(SUM(CASE WHEN most_playedon = 'Youtube' THEN stream END),0) AS streamed_on_youtube,  
+  COALESCE(SUM(CASE WHEN most_playedon = 'Spotify' THEN stream END),0) AS streamed_on_spotify  
 FROM spotify  
 GROUP BY 1  
 ) AS T1  
