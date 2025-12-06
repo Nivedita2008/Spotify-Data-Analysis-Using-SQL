@@ -202,6 +202,23 @@ WHERE
 AND  
   streamed_on_youtube <> 0; 
 
+### Q12. Find the top 3 most-viewed tracks for each artist using window functions.
+WITH ranking_artist  
+AS  
+(SELECT  
+   artist,   
+   track,  
+   SUM(views) AS Total_views,  
+   DENSE_RANK() OVER (PARTITION BY artist ORDER BY SUM(views) DESC) AS rank  
+FROM spotify  
+GROUP BY artist,track  
+ORDER BY artist,Total_views DESC  
+)  
+SELECT * FROM ranking_artist  
+WHERE  
+   rank <= 3  
+;  
+
 ## Technology Stack
 
 - PostgreSQL for Database engine
