@@ -183,7 +183,19 @@ FROM spotify
 GROUP BY album,track  
 ORDER BY Total_views DESC;  
 
-
+## Q11. Retrieve the track names that have been streamed on Spotify more than YouTube.
+SELECT * FROM  
+(SELECT  
+track,  
+COALESCE(SUM(CASE WHEN most_playedon = 'Youtube' THEN stream END),0) AS streamed_on_youtube,  
+COALESCE(SUM(CASE WHEN most_playedon = 'Spotify' THEN stream END),0) AS streamed_on_spotify  
+FROM spotify  
+GROUP BY 1  
+) AS T1  
+WHERE  
+  streamed_on_spotify > streamed_on_youtube  
+AND  
+  streamed_on_youtube <> 0; 
 
 ## Technology Stack
 
