@@ -63,33 +63,41 @@ most_playedon VARCHAR(50)
 
 #### View All Data
 SELECT * FROM spotify;  
-
+-- Displays the complete table — 20,594 rows.
 
 #### Count Total Number of Records
-SELECT COUNT(*) FROM spotify;  -- 20594  
+SELECT COUNT(*) FROM spotify;  
+-- 20594  
 
 #### Count Total Number of Unique Artists
-SELECT COUNT(DISTINCT Artist) FROM spotify;  -- 2074  
+SELECT COUNT(DISTINCT Artist) FROM spotify;  
+-- 2074 unique artists  
 
 #### List All Album Types
-SELECT DISTINCT Album_type FROM spotify;  -- "album","compilation","single"  
+SELECT DISTINCT Album_type FROM spotify;  
+-- "album","compilation","single"  
 
 #### Maximum Track Duration (in minutes)
-SELECT MAX(Duration_min) FROM spotify;  -- 77.9343  
+SELECT MAX(Duration_min) FROM spotify;  
+-- 77.9343 minutes (longest track)
 
 #### Minimum Track Duration (in minutes)
-SELECT MIN(Duration_min) FROM spotify;  -- 0  
+SELECT MIN(Duration_min) FROM spotify;  
+-- 0 minutes (invalid/missing duration)  
 
 #### Platforms Where Track is Most Played
-SELECT DISTINCT most_playedon FROM spotify;  -- "Youtube","Spotify"  
+SELECT DISTINCT most_playedon FROM spotify;  
+-- "Youtube","Spotify"  
 
 #### Retrieve Tracks With Zero Duration
 SELECT * FROM spotify 
-WHERE Duration_min = 0;  
+WHERE Duration_min = 0; 
+-- Shows tracks having incorrect duration (0 min)
 
 #### Remove Records With Zero Duration (Data Cleaning)
 DELETE FROM spotify 
 WHERE Duration_min = 0;
+-- Removes invalid/incorrect entries from the dataset
 
 ## Business Problems and Solutions
 ### Q1. Retrieve the names of all tracks that have more than 1 billion streams.  
