@@ -61,33 +61,33 @@ EnergyLiveness FLOAT,
 most_playedon VARCHAR(50)  
 );  
 
-### View All Data
+#### View All Data
 SELECT * FROM spotify;  
 
 
-### Count Total Number of Records
+#### Count Total Number of Records
 SELECT COUNT(*) FROM spotify;  -- 20594  
 
-### Count Total Number of Unique Artists
+#### Count Total Number of Unique Artists
 SELECT COUNT(DISTINCT Artist) FROM spotify;  -- 2074  
 
-### List All Album Types
+#### List All Album Types
 SELECT DISTINCT Album_type FROM spotify;  -- "album","compilation","single"  
 
-### Maximum Track Duration (in minutes)
+#### Maximum Track Duration (in minutes)
 SELECT MAX(Duration_min) FROM spotify;  -- 77.9343  
 
-### Minimum Track Duration (in minutes)
+#### Minimum Track Duration (in minutes)
 SELECT MIN(Duration_min) FROM spotify;  -- 0  
 
-### Platforms Where Track is Most Played
+#### Platforms Where Track is Most Played
 SELECT DISTINCT most_playedon FROM spotify;  -- "Youtube","Spotify"  
 
-### Retrieve Tracks With Zero Duration
+#### Retrieve Tracks With Zero Duration
 SELECT * FROM spotify 
 WHERE Duration_min = 0;  
 
-### Remove Records With Zero Duration (Data Cleaning)
+#### Remove Records With Zero Duration (Data Cleaning)
 DELETE FROM spotify 
 WHERE Duration_min = 0;
 
