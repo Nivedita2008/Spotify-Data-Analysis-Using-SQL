@@ -12,8 +12,7 @@ PostgreSQL project analyzing a Spotify music dataset with real-world streaming f
 - Demonstrate practical experience in data analytics and database management
 
 ## Dataset Overview
-
-- The dataset contains detailed attributes of music tracks, including:
+The dataset contains detailed attributes of music tracks, including:
 
 - Artist — Performer of the track
 
@@ -28,3 +27,33 @@ PostgreSQL project analyzing a Spotify music dataset with real-world streaming f
 - Engagement — Streams, Views, Likes, Comments
 
 - Categorical Flags — Official_video, Licensed
+
+## SQL Capabilities Demonstrated
+
+- Data filtering and sorting
+- Aggregate analytics using COUNT, SUM, AVG
+- Grouping insights using GROUP BY and HAVING
+- Ranking and analytics using window functions
+- CTEs and subqueries for complex insights
+- Query optimization using indexes and execution plans
+- Meaningful music metrics queries (top artists, popular albums, etc.)
+
+## Technology Stack
+- PostgreSQL for Database engine
+- SQL	for Querying and analytics
+- GitHub	for Documentation and version control
+
+## What I Learned
+
+- Handling real-world music analytics data
+
+- Writing clean and optimized SQL queries
+
+- Using advanced SQL features such as window functions and CTEs
+
+- Understanding performance improvements with indexing
+
+## Contributions
+
+Suggestions and improvements are welcome!
+Fork the repo, run queries, and explore more insights.
